@@ -288,22 +288,24 @@
 
 		// Articles.
 			$main_articles.each(function() {
-
 				var $this = $(this);
-
-				// Close.
-					$('<div class="close">Close</div>')
+			
+				// Check if the close button already exists to avoid duplication
+				if ($this.find('.close').length === 0) {
+					// Close.
+					$('<div class="close">X</div>')  // Change "Close" to "X" if you want only the symbol
 						.appendTo($this)
 						.on('click', function() {
 							location.hash = '';
 						});
-
+				}
+			
 				// Prevent clicks from inside article from bubbling.
-					$this.on('click', function(event) {
-						event.stopPropagation();
-					});
-
+				$this.on('click', function(event) {
+					event.stopPropagation();
+				});
 			});
+		
 
 		// Events.
 			$body.on('click', function(event) {
