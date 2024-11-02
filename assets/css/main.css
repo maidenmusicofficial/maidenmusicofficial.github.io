@@ -915,7 +915,25 @@ input, select, textarea {
 		list-style: none;
 		padding-left: 0;
 	}
-
+	ul.icons a[href*="venmo"] {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 50%;
+		overflow: hidden;
+		text-decoration: none;
+		border-bottom: none;
+	}
+	
+	.icons a[href*="venmo"] img {
+		width: 24px;
+		height: 24px;
+		margin: auto;
+		display: block;
+	}
+	
 		ul.icons li {
 			display: inline-block;
 			padding: 0 0.75em 0 0;
@@ -933,6 +951,11 @@ input, select, textarea {
 				line-height: 2.25rem;
 				text-align: center;
 				width: 2.25rem;
+			}
+			.icons {
+				display: flex; /* Aligns all icons in a horizontal line */
+				align-items: center; /* Centers icons vertically */
+				justify-content: center; /* Centers icons horizontally if needed */
 			}
 
 				ul.icons li a:hover {
