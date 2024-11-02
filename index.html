@@ -386,13 +386,15 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				<!-- Footer -->
 					<footer id="footer">
 						<ul class="icons">
-							<li><a href="https://venmo.com/u/ourmaiden" target="_blank">
+							<!-- Venmo Link with ID for JavaScript to target -->
+							<li><a id="venmo-link" href="#" target="_blank">
 								<img src="images/icons8-venmo.svg" style="width: 24px; height: 24px;"></a></li>
+
 							<li><a href="https://open.spotify.com/artist/44awNwinPafsF4Dg96l7zs?si=DpB4ugSeSceCkL7-q4Lh6w" class="icon brands fa-spotify"><span class="label">Spotify</span></a></li>
 							<li><a href="https://www.tiktok.com/@ourmaiden" class="icon brands fa-tiktok"><span class="label">TikTok</span></a></li>
 							<li><a href="https://www.instagram.com/ourmaiden/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							<li><a href="https://on.soundcloud.com/9yGMQtxCKMWnqbxo6" class="icon brands fa-soundcloud"><span class="label">SoundCloud</span></a></li>
-							</ul>
+						</ul>
 						<p class="copyright">
 							&copy; Maiden. Design: 
 							<a href="https://html5up.net">HTML5 UP</a>. 
@@ -402,6 +404,23 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 							Icons:
 							<a target="_blank" href="https://icons8.com/icon/96905/venmo">Venmo</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 						</p>
+						    <!-- JavaScript to set Venmo link based on device type -->
+						<script>
+							document.addEventListener("DOMContentLoaded", function() {
+								const venmoLink = document.getElementById("venmo-link");
+
+								// Check if the user is on a mobile device
+								const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+								if (isMobile) {
+									// Use Venmo deep link for mobile
+									venmoLink.href = "venmo://paycharge?txn=pay&recipients=ourmaiden";
+								} else {
+									// Use standard URL for desktop
+									venmoLink.href = "https://venmo.com/ourmaiden";
+								}
+							});
+						</script>
 					</footer>
 
 			</div>
