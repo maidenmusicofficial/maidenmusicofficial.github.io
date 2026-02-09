@@ -605,7 +605,14 @@ input, select, textarea {
 			border-radius: 0;
 			padding: 0;
 		}
-
+/* Maiden Title */
+.maiden-title {
+    width: 45px;  /* Size of the icon */
+    height: auto;
+    margin-top: 17px; /* Adjust as needed to move it down */
+	fill: rgb(255, 255, 255);  /* Changes the color to white */
+    transform: rotate(42deg); /* Rotates the icon 45 degrees */
+}
 /* Icon */
 .sword-icon {
     width: 45px;  /* Size of the icon */
