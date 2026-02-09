@@ -607,7 +607,7 @@ input, select, textarea {
 		}
 /* Maiden Title */
 .maiden-title {
-    width: 800px;  /* Size of the icon */
+    width: 1000px;  /* Size of the icon */
     height: auto;
     margin-top: 0px; /* Adjust as needed to move it down */
 
@@ -617,7 +617,7 @@ input, select, textarea {
     width: 45px;  /* Size of the icon */
     height: auto;
     margin-top: 17px; /* Adjust as needed to move it down */
-	fill: rgb(255, 255, 255);  /* Changes the color to white */
+	fill: ##B6B7B6;  /* Changes the color to white */
     transform: rotate(42deg); /* Rotates the icon 45 degrees */
 }
 
