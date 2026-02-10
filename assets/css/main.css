@@ -140,7 +140,7 @@ input, select, textarea {
 		}
 
 	body, input, select, textarea {
-		color: rgb(255, 255, 255);
+		color: #B6B7B6;
 		font-family: 'EB Garamond', serif;
 		font-weight: 300;
 		font-size: 1rem;
@@ -614,11 +614,11 @@ input, select, textarea {
 }
 /* Icon */
 .sword-icon {
-    width: 45px;  /* Size of the icon */
+    width: 80px;  /* Size of the icon */
     height: auto;
-    margin-top: 17px; /* Adjust as needed to move it down */
-	fill: ##B6B7B6;  /* Changes the color to white */
-    transform: rotate(42deg); /* Rotates the icon 45 degrees */
+    margin-top: 0px; /* Adjust as needed to move it down */
+	fill: #B6B7B6;  /* Changes the color to grey */
+    transform: rotate(0deg); /* Rotates the icon 45 degrees */
 }
 
 	.icon {
@@ -951,7 +951,7 @@ input, select, textarea {
 
 			ul.icons li a {
 				border-radius: 100%;
-				box-shadow: inset 0 0 0 1px #ffffff;
+				box-shadow: inset 0 0 0 1px #B6B8B6;
 				display: inline-block;
 				height: 2.25rem;
 				line-height: 2.25rem;
@@ -1322,7 +1322,7 @@ input, select, textarea {
 				left: calc(50% - 1px);
 				width: 1px;
 				height: calc(3.5rem + 1px);
-				background: #ffffff;
+				background: #FF00AA;
 			}
 
 		#header > :first-child {
@@ -1337,7 +1337,7 @@ input, select, textarea {
 			width: 5.5rem;
 			height: 5.5rem;
 			line-height: 5.5rem;
-			border: solid 1px #ffffff;
+			border: solid 0px #FF00AA;
 			border-radius: 100%;
 		}
 
@@ -1347,7 +1347,7 @@ input, select, textarea {
 
 		#header .content {
 			border-style: solid;
-			border-color: rgb(255, 255, 255);
+			border-color: #FF00AA;
 			border-top-width: 1px;
 			border-bottom-width: 1px;
 			max-width: 100%;
@@ -1386,13 +1386,13 @@ input, select, textarea {
 			margin-bottom: 0;
 			list-style: none;
 			padding-left: 0;
-			border: solid 1px #ffffff;
+			border: solid 1px #FF00AA;
 			border-radius: 4px;
 		}
 
 			#header nav ul li {
 				padding-left: 0;
-				border-left: solid 1px #ffffff;
+				border-left: solid 1px #FF00AA;
 			}
 
 				#header nav ul li:first-child {
@@ -1427,7 +1427,7 @@ input, select, textarea {
 			left: calc(50% - 1px);
 			width: 1px;
 			height: 100%;
-			background: #ffffff;
+			background: #FF00AA;
 		}
 
 		#header nav.use-middle ul li.is-middle {
@@ -1524,7 +1524,7 @@ input, select, textarea {
 
 					#header nav ul li {
 						border-left: 0;
-						border-top: solid 1px #ffffff;
+						border-top: solid 1px #B6B7B6;
 					}
 
 						#header nav ul li:first-child {
@@ -1702,3 +1702,16 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+/* Navigation icons */
+.nav-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 7rem;
+	min-width: 7.5rem;
+}
+
+.nav-icon img {
+	width: 90px;   /* adjust to taste */
+	height: 48px;
+}
