@@ -1,5 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
+@import url('https://fonts.googleapis.com/css2?family=Amarante&display=swap');
 
 /*
 	Dimension by HTML5 UP
@@ -181,7 +182,7 @@ input, select, textarea {
 		margin: 0 0 1rem 0;
 		text-transform: uppercase;
 		letter-spacing: 0.2rem;
-		font-family: 'Uncial Antiqua', serif;
+		font-family: 'Amarante', regular;
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
