@@ -1702,16 +1702,19 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
-/* Navigation icons */
-.nav-icon {
+/* FORCE nav SVG icons to be bigger */
+#header nav a.nav-icon {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 7rem;
-	min-width: 7.5rem;
-}
-
-.nav-icon img {
-	width: 90px;   /* adjust to taste */
-	height: 48px;
-}
+	height: 3.25rem;     /* button height */
+	line-height: normal; /* stop text-style constraints */
+  }
+  
+  #header nav a.nav-icon img {
+	width: 130px !important;
+	height: 48px !important;
+	max-width: none !important;
+	max-height: none !important;
+	display: block;
+  }
