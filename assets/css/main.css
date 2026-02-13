@@ -144,7 +144,7 @@ input, select, textarea {
 		color: #B6B7B6;
 		font-family: 'EB Garamond', serif;
 		font-weight: 300;
-		font-size: 1rem;
+		font-size: 1.2rem;
 		line-height: 1.65;
 	}
 
@@ -182,7 +182,7 @@ input, select, textarea {
 		margin: 0 0 1rem 0;
 		text-transform: uppercase;
 		letter-spacing: 0.2rem;
-		font-family: 'Amarante', regular;
+		font-family: 'Amarante', serif;
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
