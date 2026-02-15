@@ -86,32 +86,57 @@
 								</ul>
 							</article>
 
-						<!-- Live Dates -->
+						<!-- Live Dates --> 
 							<article id="livedates">
 								<h2 class="major">Live Dates</h2>
 								
 								<!-- Live Date Cover Image -->
 								<span class="image main">
-									<img src="images/articleimages/arlenes_052225" alt="Image" />
+									<img src="images/articleimages/DSC" alt="Image" />
 								</span>
 
-								<!-- Date and Location -->
-								<h3 class="major date-location">June 21, 2025 4:15 at Porch Stomp</h3>
-
-								<!-- Description  -->
-								<p>
-									Porch Stomp on Governer's Island, Roomful of Sky Music Stage.
-								</p>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">July 4, 2025 6:00 PM at Hart Bar</h3>
-
-								<!-- Description  -->
-								<p>
-									Belle Hampton & Friends (Gwenn Malick, Maiden, Beyonce's Husband, Pawn Promotion, and Belle Hampton).
-								</p>
-								
+								<!-- Shows will load here -->
+								<div id="shows"></div>
 							</article>
+
+							<script>
+							fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSUfwod_ce1euMa40Q2y3einqdFgwOeDIBOSaI8x3HqnPkELXq4TQT8GDAjuYWcp70dmDAWgazTwCG4/pubhtml")
+							.then(response => response.json())
+							.then(data => {
+								const container = document.getElementById("shows");
+
+								// Remove past dates
+								const today = new Date();
+								const upcoming = data.filter(show => new Date(show.Date) >= today);
+
+								// Sort soonest first
+								upcoming.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+
+								if (upcoming.length === 0) {
+								container.innerHTML = "<p>More shows coming soon.</p>";
+								return;
+								}
+
+								upcoming.forEach(show => {
+								const title = document.createElement("h3");
+								title.className = "major date-location";
+								title.textContent = `${show.Date} ${show.Time} at ${show.Venue}`;
+
+								const description = document.createElement("p");
+								description.innerHTML = `
+									${show.Description || ""}
+									<br><a href="${show["Ticket Link"]}" target="_blank">Tickets</a>
+								`;
+
+								container.appendChild(title);
+								container.appendChild(description);
+								});
+							})
+							.catch(error => {
+								document.getElementById("shows").innerHTML = "<p>More shows coming soon.</p>";
+								console.error(error);
+							});
+							</script>
 
 						<!-- Past Dates -->
 							<article id="pastdates">

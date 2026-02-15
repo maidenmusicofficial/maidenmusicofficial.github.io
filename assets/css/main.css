@@ -1,6 +1,7 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
 @import url('https://fonts.googleapis.com/css2?family=Amarante&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+24&display=swap');
 
 /*
 	Dimension by HTML5 UP
@@ -142,7 +143,7 @@ input, select, textarea {
 
 	body, input, select, textarea {
 		color: #B6B7B6;
-		font-family: 'EB Garamond', serif;
+		font-family: 'Amarante', serif;
 		font-weight: 300;
 		font-size: 1.2rem;
 		line-height: 1.65;
