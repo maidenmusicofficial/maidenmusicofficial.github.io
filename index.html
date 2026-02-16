@@ -73,12 +73,12 @@
 
 								<!-- Bio -->
 								<p>
-									Bella Breen had a fever dream in 2020 about a band called Maiden which they thought was really cool. Shortly after, a magical room opened in their friend’s apartment in New York City. So they traversed the country to reach the mythical city, in search of kin and music. Until one fateful eve at an open mic in a tiki bar in the lower east side, where they were approached by Trevor (guitar) and Harlan (bass) who wanted to jam on their hony-swete tunes. Soon after, they brought on Rex (drums) and found their sound, which combines lyrical storytelling with funk and rock influences. Maiden’s punchy three part harmonies, emotional hooks, and electric alchemy have made them a favorite among venue bookers and promoters. They are currently working on their first EP, set to release in Spring 2026.
+									Bella Breen had a fever dream in 2020 about a singing changling named Maiden. Upon waking, they realized the fair maid did not exist yet, and Bella would have to create her in order to hear her righteous tunes again. Just then, a magical room opened in their friend’s apartment in Brooklyn. So they traversed desert and plain to the mythical city, in search of kin, music, and their Maiden. One fateful eve in a tiki bar in the lower east side, they were approached by the frightful knights Trevor (guitar) and Harlan (bass) who requested a royal jam. Soon after, they brought on the infallible automaton, Rex (drums) and Maiden was born. Now they travel the boroughs bringing their lyrical storytelling with funk and rock influences. Their punchy three part harmonies, emotional hooks, and electric alchemy make them a dazzling addition to every bill. They are currently working on their first EP, set to release in Spring 2026.
 								</p>
 
 								<!-- Link to HyperFollow Page -->
 								<p>
-									Choose music service below to listen to the latest single:
+									Choose your preferred divine transmission service below to listen to the latest single:
 								</p>
 								
 								<ul class="actions">
@@ -92,7 +92,7 @@
 								
 								<!-- Live Date Cover Image -->
 								<span class="image main">
-									<img src="images/articleimages/DSC" alt="Image" />
+									<img src="images/articleimages/DSC.jpg" alt="Image" />
 								</span>
 
 								<!-- Shows will load here -->
@@ -100,42 +100,129 @@
 							</article>
 
 							<script>
-							fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSUfwod_ce1euMa40Q2y3einqdFgwOeDIBOSaI8x3HqnPkELXq4TQT8GDAjuYWcp70dmDAWgazTwCG4/pubhtml")
-							.then(response => response.json())
-							.then(data => {
-								const container = document.getElementById("shows");
+							const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSUfwod_ce1euMa40Q2y3einqdFgwOeDIBOSaI8x3HqnPkELXq4TQT8GDAjuYWcp70dmDAWgazTwCG4/pub?gid=0&single=true&output=csv"
+							
+							function parseCSV(csvText) {
+								// Parses CSV into array of arrays (handles quoted commas)
+								const rows = [];
+								let row = [];
+								let cell = "";
+								let inQuotes = false;
 
-								// Remove past dates
+								for (let i = 0; i < csvText.length; i++) {
+								const c = csvText[i];
+								const next = csvText[i + 1];
+
+								if (c === '"' && inQuotes && next === '"') {
+									cell += '"';
+									i++;
+								} else if (c === '"') {
+									inQuotes = !inQuotes;
+								} else if (c === "," && !inQuotes) {
+									row.push(cell);
+									cell = "";
+								} else if ((c === "\n" || c === "\r") && !inQuotes) {
+									if (c === "\r" && next === "\n") i++;
+									row.push(cell);
+									rows.push(row);
+									row = [];
+									cell = "";
+								} else {
+									cell += c;
+								}
+								}
+								if (cell.length || row.length) {
+								row.push(cell);
+								rows.push(row);
+								}
+								return rows.filter(r => r.some(v => (v ?? "").trim() !== ""));
+							}
+
+							function rowsToObjects(rows) {
+								const headers = rows[0].map(h => h.trim());
+								return rows.slice(1).map(r => {
+								const obj = {};
+								headers.forEach((h, idx) => (obj[h] = (r[idx] ?? "").trim()));
+								return obj;
+								});
+							}
+
+							function parseDateLocal(dateStr) {
+								// Handles common Google Sheets exports like M/D/YYYY or MM/DD/YYYY
+								// Returns a Date at local midnight for reliable comparisons
+								const m = dateStr.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+								if (m) {
+								const mm = Number(m[1]);
+								const dd = Number(m[2]);
+								const yyyy = Number(m[3]);
+								return new Date(yyyy, mm - 1, dd);
+								}
+								// Fallback: let browser try (less reliable)
+								const d = new Date(dateStr);
+								return isNaN(d.getTime()) ? null : d;
+							}
+
+							fetch(CSV_URL)
+								.then(response => {
+								if (!response.ok) throw new Error(`HTTP ${response.status}`);
+								return response.text(); // CSV is text
+								})
+								.then(csvText => {
+								const container = document.getElementById("shows");
+								if (!container) return;
+
+								const rows = parseCSV(csvText);
+								const data = rowsToObjects(rows);
+
+								// Today at local midnight
 								const today = new Date();
-								const upcoming = data.filter(show => new Date(show.Date) >= today);
+								today.setHours(0, 0, 0, 0);
+
+								// Filter upcoming
+								const upcoming = data
+									.map(show => {
+									const d = parseDateLocal(show.Date);
+									return { ...show, _dateObj: d };
+									})
+									.filter(show => show._dateObj && show._dateObj >= today);
 
 								// Sort soonest first
-								upcoming.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+								upcoming.sort((a, b) => a._dateObj - b._dateObj);
 
 								if (upcoming.length === 0) {
-								container.innerHTML = "<p>More shows coming soon.</p>";
-								return;
+									container.innerHTML = "<p>More shows coming soon.</p>";
+									return;
 								}
 
+								// clear before adding
+								container.innerHTML = "";
+
 								upcoming.forEach(show => {
-								const title = document.createElement("h3");
-								title.className = "major date-location";
-								title.textContent = `${show.Date} ${show.Time} at ${show.Venue}`;
+									const title = document.createElement("h3");
+									title.className = "major date-location";
+									const timePart = show.Time ? ` ${show.Time}` : "";
+									const venuePart = show.Venue ? ` at ${show.Venue}` : "";
+									title.textContent = `${show.Date}${timePart}${venuePart}`;
 
-								const description = document.createElement("p");
-								description.innerHTML = `
-									${show.Description || ""}
-									<br><a href="${show["Ticket Link"]}" target="_blank">Tickets</a>
-								`;
+									const description = document.createElement("p");
 
-								container.appendChild(title);
-								container.appendChild(description);
+									const desc = show.Description ? `${show.Description}<br>` : "";
+									const ticketLink = show["Ticket Link"] ? show["Ticket Link"] : "";
+									const tickets = ticketLink
+									? `<a href="${ticketLink}" target="_blank" rel="noopener">Tickets</a>`
+									: "";
+
+									description.innerHTML = `${desc}${tickets}`;
+
+									container.appendChild(title);
+									container.appendChild(description);
 								});
-							})
-							.catch(error => {
-								document.getElementById("shows").innerHTML = "<p>More shows coming soon.</p>";
-								console.error(error);
-							});
+								})
+								.catch(error => {
+								const el = document.getElementById("shows");
+								if (el) el.innerHTML = "<p>More shows coming soon.</p>";
+								console.error("CSV load/parse error:", error);
+								});
 							</script>
 
 						<!-- Past Dates -->
@@ -506,8 +593,8 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 								<img src="images/icons8-venmo.svg" style="width: 24px; height: 24px;"></a></li>
 
 							<li><a href="https://open.spotify.com/artist/44awNwinPafsF4Dg96l7zs?si=DpB4ugSeSceCkL7-q4Lh6w" class="icon brands fa-spotify"><span class="label">Spotify</span></a></li>
-							<li><a href="https://www.tiktok.com/@ourmaiden" class="icon brands fa-tiktok"><span class="label">TikTok</span></a></li>
-							<li><a href="https://www.instagram.com/ourmaiden/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://www.tiktok.com/@maidentheband" class="icon brands fa-tiktok"><span class="label">TikTok</span></a></li>
+							<li><a href="https://www.instagram.com/maidentheband/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
 							<li><a href="https://on.soundcloud.com/9yGMQtxCKMWnqbxo6" class="icon brands fa-soundcloud"><span class="label">SoundCloud</span></a></li>
 						</ul>
 						<p class="copyright">
