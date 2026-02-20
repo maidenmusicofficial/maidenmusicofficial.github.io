@@ -607,13 +607,21 @@ input, select, textarea {
 			border-radius: 0;
 			padding: 0;
 		}
-/* Maiden Title */
-.maiden-title {
-    width: 1000px;  /* Size of the icon */
-    height: auto;
-    margin-top: 0px; /* Adjust as needed to move it down */
-
-}
+/* Maiden Title (responsive) */
+	.maiden-title{
+		width: 100%;
+		max-width: 1000px;   /* keeps your desktop look */
+		height: auto;
+		display: block;
+		margin: 0 auto;      /* centers */
+	}
+	
+	/* phones */
+	@media screen and (max-width: 480px){
+		.maiden-title{
+		max-width: 280px;  /* adjust: 240–340px depending on taste */
+		}
+	}
 /* Icon */
 .sword-icon {
     width: 80px;  /* Size of the icon */
