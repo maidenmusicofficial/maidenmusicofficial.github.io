@@ -1798,5 +1798,11 @@ input, select, textarea {
 	transform: scale(1.03);
 	box-shadow: 0 6px 18px rgba(0,0,0,0.2);
   }
-  
+  /* TEMP DEBUG: force Maiden title to be responsive no matter what */
+#header .content .inner img.maiden-title {
+	width: 80vw !important;
+	max-width: 100% !important;
+	height: auto !important;
+	outline: 2px solid red; /* remove after testing */
+  }
   
