@@ -1720,3 +1720,75 @@ input, select, textarea {
 	max-height: none !important;
 	display: block;
   }
+
+  /* Media Page */
+  .media-grid{
+	display:grid;
+	grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+	gap:1.25rem;
+  }
+  
+  .media-card{
+	display:block;
+	text-decoration:none;
+	color:inherit;
+	border-radius:14px;
+	overflow:hidden;
+	background:rgba(255,255,255,0.04);
+	box-shadow:0 0 0 1px rgba(255,255,255,0.12) inset;
+	transition:transform .18s ease, box-shadow .18s ease;
+  }
+  
+  .media-card:hover{
+	transform:translateY(-2px);
+	box-shadow:0 0 0 1px rgba(255,255,255,0.22) inset;
+  }
+  
+  .media-thumb{
+	width:100%;
+	aspect-ratio:16/9;
+	object-fit:cover;
+	display:block;
+  }
+  
+  .media-meta{
+	padding:0.85rem 0.95rem 1rem;
+  }
+  
+  .media-title{
+	margin:0;
+	font-size:0.95rem;
+	letter-spacing:0.06em;
+	text-transform:uppercase;
+  }
+  
+  .media-caption{
+	margin:0.5rem 0 0;
+	opacity:0.8;
+	font-size:0.9rem;
+	line-height:1.35;
+  }  
+  /* Media Slide */
+
+.photo-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 20px;
+  }
+  
+  .photo-grid img {
+	width: 100%;
+	aspect-ratio: 4 / 5;   /* nice portrait ratio for press photos */
+	object-fit: cover;
+	border-radius: 12px;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  /* Subtle hover = feels polished */
+  .photo-grid img:hover {
+	transform: scale(1.03);
+	box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  }
+  
+  

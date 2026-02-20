@@ -44,7 +44,7 @@
 								  </li>
 								  <li>
 									<a href="#media" class="nav-icon">
-									  <img src="images/pastdates.svg" alt="Media">
+									  <img src="images/media.svg" alt="Media">
 									  <span class="sr-only">Media</span>
 									</a>
 								  </li>
@@ -225,90 +225,60 @@
 								});
 							</script>
 
-						<!-- Past Dates -->
-							<article id="pastdates">
-								<h2 class="major">Past Dates</h2>
-							
-								<!-- Past Date Cover Image -->
-								<span class="image main">
-									<img src="images/articleimages/07192024_bwguitar001.jpg" alt="Cover of the single" />
-								</span>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">May 22, 2025 7:00 PM at Arlene's Grocery</h3>
-
-								<!-- Description  -->
-								<p>
-									NYC Singer-Songwriter Showcase Featuring Dr. Boat.
-								</p>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">April 4, 2025 9:00 PM at Pete's Candy Store</h3>
-
-								<!-- Description  -->
-								<p>
-									Maiden, SERO, and Saint Wilson at Pete's Candy Store.
-								</p>
-								
-								<!-- Date and Location -->
-								<h3 class="major date-location">Feb. 17, 2025 at Smash Studios NYC</h3>
-
-								<!-- Description  -->
-								<p>
-									NYC Songwriters Showcase. Variety show backed by house band Uncle Skunk's Good Time String Band.
-								</p>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">Feb. 15, 2025 at The Bitter End </h3>
-
-								<p>
-									Accompanied Jessenia (keys, guitar, backup vocals).
-								</p>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">Jan. 31, 2025 at Young Ethel's </h3>
-
-								<p>
-									Accompanied Jessenia (keys, guitar, backup vocals).
-								</p>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">Jan. 25, 2025 at Pete's Candy Store</h3>
-
-								<!-- Description  -->
-								<p>
-									Maiden, SERO, and Saint Wilson at Pete's Candy Store.
-								</p>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">Dec. 9, 2024 at Arlene's Grocery </h3>
-
-								<p>
-									Accompanied Madi Task (keys, backup vocals).
-								</p>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">Nov. 14, 2024 at Otto's Shrunken Head</h3>
-
-								<!-- Description  -->
-								<p>
-									Otto's Special Invitation Show - Singer-songwriter performances at 6:00.
-								</p>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">Nov. 11, 2024 at Smash Studios NYC</h3>
-
-								<!-- Description  -->
-								<p>
-									NYC Songwriters Showcase.
-								</p>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">August 10, 2024 at Human Tradition</h3>
-
-								<!-- Date and Location -->
-								<h3 class="major date-location">July 19, 2024 at Human Tradition</h3>
-							</article>
+						<!-- Media -->
+						<article id="media">
+							<h2 class="major">Media</h2>
+						  
+							<!-- VIDEOS -->
+							<h3>Videos</h3>
+						  
+							<div class="video-grid">
+						  
+							  <iframe
+							  	width="560" height="315"
+								src="https://www.youtube.com/embed/Es-zVOvj8xM?si=DmZEoF-5gyPbSH2g"
+								title="The Big House"
+								loading="lazy"
+								allowfullscreen>
+							  </iframe>
+						  
+							  <iframe
+							  	width="560" height="315"
+								src="https://www.youtube.com/embed/RXFIG0pjIKA?si=-qubRzvzpcBC176J"
+								title="Take the Blame"
+								loading="lazy"
+								allowfullscreen>
+							  </iframe>
+						  
+							</div>
+						  
+						  
+							<!-- PHOTOS -->
+							<h3>Photos</h3>
+  							<div id="photo-grid" class="photo-grid"></div>
+						  
+							<!-- REELS -->
+							<h3>Reels</h3>
+						  
+							<div class="reel-grid">
+						  
+							  <iframe
+							  	width="560" height="700"
+								src="https://www.instagram.com/reel/DNeG7mzRVey/embed"
+								loading="lazy"
+								allowtransparency="true">
+							  </iframe>
+						  
+							  <iframe
+							  	width="560" height="700"
+								src="https://www.instagram.com/reel/DLyOzciMoDJ/embed"
+								loading="lazy"
+								allowtransparency="true">
+							  </iframe>
+						  
+							</div>
+						  
+						  </article>						  
 
 						<!-- Contact -->
 							<article id="contact">
@@ -636,6 +606,102 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<script>
+				(function () {
+				  // Prevent double-run
+				  let hasRun = false;
+				
+				  function escapeHtml(str) {
+					return String(str || "")
+					  .replaceAll("&", "&amp;")
+					  .replaceAll("<", "&lt;")
+					  .replaceAll(">", "&gt;")
+					  .replaceAll('"', "&quot;")
+					  .replaceAll("'", "&#039;");
+				  }
+				
+				  async function loadPhotosFromGoogleSheet() {
+					if (hasRun) return;
+					const grid = document.getElementById("photo-grid");
+					if (!grid) return; // If Media isn't in DOM yet, do nothing safely.
+				
+					hasRun = true;
+				
+					// ✅ Replace these:
+					const SHEET_ID = "1JKqrwu_nrOCTZmcchjT5ysLUC0-l20CPP2TcxkVr7YQ";
+					const SHEET_TAB_NAME = "Media";
+				
+					// Google Visualization API endpoint (returns JSON, CORS-friendly)
+					const url =
+					  "https://docs.google.com/spreadsheets/d/" + encodeURIComponent(SHEET_ID) +
+					  "/gviz/tq?sheet=" + encodeURIComponent(SHEET_TAB_NAME) +
+					  "&tq=" + encodeURIComponent("select A,B where A is not null");
+				
+					try {
+					  const res = await fetch(url, { cache: "no-store" });
+					  if (!res.ok) throw new Error("Fetch failed: " + res.status);
+				
+					  const text = await res.text();
+				
+					  // gviz wraps JSON in a function call; extract the JSON object
+					  const jsonText = text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1);
+					  const data = JSON.parse(jsonText);
+				
+					  const rows = (data.table && data.table.rows) ? data.table.rows : [];
+					  if (!rows.length) {
+						grid.innerHTML = "<p>No photos yet.</p>";
+						return;
+					  }
+				
+					  // Build HTML safely
+					  let html = "";
+					  for (const r of rows) {
+						const urlCell = r.c && r.c[0] ? r.c[0].v : "";
+						const altCell = r.c && r.c[1] ? r.c[1].v : "Photo";
+						if (!urlCell) continue;
+				
+						html += `<img loading="lazy" src="${escapeHtml(urlCell)}" alt="${escapeHtml(altCell)}">`;
+					  }
+				
+					  grid.innerHTML = html || "<p>No photos yet.</p>";
+				
+					} catch (err) {
+					  console.warn("Photo feed failed:", err);
+					  // Fail gracefully without breaking the site
+					  grid.innerHTML = "<p>Photos unavailable right now.</p>";
+					}
+				  }
+				
+				  // Run after everything loads
+				  window.addEventListener("load", loadPhotosFromGoogleSheet);
+				
+				  // Also run when hash changes (common in single-page templates)
+				  window.addEventListener("hashchange", function () {
+					// Allow retry when navigating to #media later
+					hasRun = false;
+					loadPhotosFromGoogleSheet();
+				  });
+				})();
+				</script>
+				<script>
+					document.addEventListener("click", function (e) {
+					  if (!e.target.matches(".photo-grid img")) return;
+					
+					  const overlay = document.createElement("div");
+					  overlay.className = "lightbox-overlay";
+					
+					  const img = document.createElement("img");
+					  img.src = e.target.src;
+					  img.alt = e.target.alt;
+					
+					  overlay.appendChild(img);
+					  document.body.appendChild(overlay);
+					
+					  overlay.addEventListener("click", () => overlay.remove());
+					});
+					</script>
+				
 
 	</body>
 </html>
