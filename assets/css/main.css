@@ -1806,7 +1806,7 @@ input, select, textarea {
 .reel-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 /* Make all iframes responsive */
