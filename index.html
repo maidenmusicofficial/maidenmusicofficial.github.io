@@ -9,7 +9,24 @@
 		<title>Maiden</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css?v=3" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			/* Force Maiden.svg to be responsive on all screens */
+			#header .content .inner img.maiden-title{
+			  width: 100% !important;
+			  max-width: 1000px !important;  /* desktop cap */
+			  height: auto !important;
+			  display: block !important;
+			  margin: 0 auto !important;
+			}
+		  
+			/* phone sizing */
+			@media (max-width: 480px){
+			  #header .content .inner img.maiden-title{
+				max-width: 280px !important; /* tweak if you want */
+			  }
+			}
+		  </style>
 		<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond&display=swap" rel="stylesheet">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
