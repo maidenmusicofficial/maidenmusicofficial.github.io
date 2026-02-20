@@ -607,21 +607,20 @@ input, select, textarea {
 			border-radius: 0;
 			padding: 0;
 		}
-/* Maiden Title (responsive) */
-	.maiden-title{
-		width: 100%;
-		max-width: 1000px;   /* keeps your desktop look */
-		height: auto;
-		display: block;
-		margin: 0 auto;      /* centers */
+
+/* Maiden Title - Responsive */
+.maiden-title {
+	width: 100%;
+	max-width: 1000px;   /* desktop limit */
+	height: auto;
+	display: block;
+	margin: 0 auto;
+  }
+  @media screen and (max-width: 480px) {
+	.maiden-title {
+	  max-width: 280px;
 	}
-	
-	/* phones */
-	@media screen and (max-width: 480px){
-		.maiden-title{
-		max-width: 280px;  /* adjust: 240–340px depending on taste */
-		}
-	}
+  }
 /* Icon */
 .sword-icon {
     width: 80px;  /* Size of the icon */
@@ -1797,12 +1796,5 @@ input, select, textarea {
   .photo-grid img:hover {
 	transform: scale(1.03);
 	box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-  }
-  /* TEMP DEBUG: force Maiden title to be responsive no matter what */
-#header .content .inner img.maiden-title {
-	width: 80vw !important;
-	max-width: 100% !important;
-	height: auto !important;
-	outline: 2px solid red; /* remove after testing */
   }
   
