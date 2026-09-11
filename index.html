@@ -32,6 +32,14 @@
 				padding-top: 0.5rem !important;
     			padding-bottom: 0.5rem !important;
 			}
+			.show-event {
+				margin-bottom: 2.5rem;
+			}
+
+			.show-event h3,
+			.show-event p {
+				margin: 0 0 0.3rem 0 !important;
+			}
 		  </style>
 		<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond&display=swap" rel="stylesheet">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
@@ -221,31 +229,39 @@
 								container.innerHTML = "";
 
 								upcoming.forEach(show => {
-									const title = document.createElement("h3");
-									title.className = "major date-location";
-									const timePart = show.Time ? ` ${show.Time}` : "";
-									const venuePart = show.Venue ? ` at ${show.Venue}` : "";
-									title.textContent = `${show.Date}${timePart}${venuePart}`;
-									const lineup = document.createElement("p");
-									lineup.className = "lineup";
-									if (show.Lineup) {
-										lineup.textContent = show.Lineup;
-									}
+								const eventBlock = document.createElement("div");
+								eventBlock.className = "show-event";
 
-									const description = document.createElement("p");
+								const title = document.createElement("h3");
+								title.className = "major date-location";
+								const timePart = show.Time ? ` ${show.Time}` : "";
+								const venuePart = show.Venue ? ` at ${show.Venue}` : "";
+								title.textContent = `${show.Date}${timePart}${venuePart}`;
 
-									const desc = show.Description ? `${show.Description}<br>` : "";
-									const ticketLink = show["Ticket Link"] ? show["Ticket Link"] : "";
-									const tickets = ticketLink
-									? `<a href="${ticketLink}" target="_blank" rel="noopener">Tickets</a>`
-									: "";
+								const description = document.createElement("p");
+								if (show.Description) {
+									description.textContent = show.Description;
+								}
 
-									description.innerHTML = `${desc}${tickets}`;
+								const lineup = document.createElement("p");
+								lineup.className = "lineup";
+								if (show.Lineup) {
+									lineup.textContent = show.Lineup;
+								}
 
-									container.appendChild(title);
-									if (show.Lineup) container.appendChild(lineup);
-									container.appendChild(description);
-								});
+								const tickets = document.createElement("p");
+								const ticketLink = show["Ticket Link"] ? show["Ticket Link"] : "";
+								if (ticketLink) {
+									tickets.innerHTML = `<a href="${ticketLink}" target="_blank" rel="noopener">Tickets</a>`;
+								}
+
+								eventBlock.appendChild(title);
+								if (show.Description) eventBlock.appendChild(description);
+								if (show.Lineup) eventBlock.appendChild(lineup);
+								if (ticketLink) eventBlock.appendChild(tickets);
+
+								container.appendChild(eventBlock);
+							});
 								})
 								.catch(error => {
 								const el = document.getElementById("shows");
