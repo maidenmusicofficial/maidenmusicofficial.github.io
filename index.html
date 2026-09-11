@@ -13,18 +13,17 @@
 		<style>
 			/* Force Maiden.svg to be responsive on all screens */
 			#header .content .inner img.maiden-title{
-			  width: 100% !important;
-			  max-width: 1000px !important;  /* desktop cap */
-			  height: auto !important;
-			  display: block !important;
-			  margin: 0 auto !important;
+			width: 100% !important;
+			max-width: 600px !important;  /* was 1000px — smaller on desktop */
+			height: auto !important;
+			display: block !important;
+			margin: 0 auto !important;
 			}
-		  
 			/* phone sizing */
 			@media (max-width: 500px){
-			  #header .content .inner img.maiden-title{
-				max-width: 500px !important; /* tweak if you want */
-				}
+			#header .content .inner img.maiden-title{
+				max-width: 300px !important;  /* was 500px — smaller on phone */
+			}
 			}
 			/* stop the header from cropping the cover image */
 			#header .content .inner {
