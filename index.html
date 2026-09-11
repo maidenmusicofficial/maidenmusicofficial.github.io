@@ -24,7 +24,12 @@
 			@media (max-width: 500px){
 			  #header .content .inner img.maiden-title{
 				max-width: 500px !important; /* tweak if you want */
-			  }
+				}
+			}
+			/* NEW — stop the header from cropping the cover image */
+			#header .content .inner {
+				max-height: none !important;
+				overflow: visible !important;
 			}
 		  </style>
 		<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=EB+Garamond&display=swap" rel="stylesheet">
