@@ -302,12 +302,16 @@ input, select, textarea {
 	.align-right {
 		text-align: right;
 	}
+
 /* Live Events Title */	
 	.date-location {
 		font-family: 'EB Garamond', serif;
 		font-size: 1.25rem;
 		font-weight: 600;
-		letter-spacing: 0.1rem
+		letter-spacing: 0.1rem;
+		overflow-wrap: break-word;
+		word-break: break-word;
+		max-width: 100%;
 	}
 
 /* Form */
